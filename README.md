@@ -1,7 +1,7 @@
-# Newestapps
+# AcheiCorridas
 
 ```bash
-composer require newesatpps/socialite-provider
+composer require acheicorridas/socialite-provider
 ```
 
 [comment]: <> (## Installation & Basic Usage)
@@ -11,11 +11,11 @@ composer require newesatpps/socialite-provider
 ### Add configuration to `config/services.php`
 
 ```php
-'newestapps' => [    
-  'issuer' => env('NEWESTAPPS_OPENID_ISSUER'),  
-  'client_id' => env('NEWESTAPPS_CLIENT_ID'),  
-  'client_secret' => env('NEWESTAPPS_CLIENT_SECRET'),  
-  'redirect' => env('NEWESTAPPS_REDIRECT_URI'),
+'acheicorridas' => [    
+  'issuer' => env('ACHEICORRIDAS_OPENID_ISSUER'),  
+  'client_id' => env('ACHEICORRIDAS_CLIENT_ID'),  
+  'client_secret' => env('ACHEICORRIDAS_CLIENT_SECRET'),  
+  'redirect' => env('ACHEICORRIDAS_REDIRECT_URI'),
 ],
 ```
 
@@ -29,7 +29,7 @@ Add the event to your `listen[]` array in `app/Providers/EventServiceProvider`. 
 protected $listen = [
     \SocialiteProviders\Manager\SocialiteWasCalled::class => [
         // ... other providers
-        'SocialiteProviders\\Newestapps\\NewestappsExtendSocialite@handle',
+        'SocialiteProviders\\AcheiCorridas\\AcheiCorridasExtendSocialite@handle',
     ],
 ];
 ```
@@ -39,12 +39,10 @@ protected $listen = [
 You should now be able to use the provider like you would regularly use Socialite (assuming you have the facade installed):
 
 ```php
-return Socialite::driver('newestapps')->redirect();
+return Socialite::driver('acheicorridas')->redirect();
 ```
 
 ### Returned User fields
 
 - ``id``
 - ``name``
-- ``email``
-- ``avatar``

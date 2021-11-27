@@ -1,8 +1,8 @@
 {
-    "name": "newestapps/socialite-provider",
+    "name": "acheicorridas/socialite-provider",
     "version": "1.0.1",
     "type": "library",
-    "description": "Newestapps OAuth2 Provider for Laravel Socialite",
+    "description": "AcheiCorridas OAuth2 Provider for Laravel Socialite",
     "license": "MIT",
     "authors": [
         {
@@ -17,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "SocialiteProviders\\Newestapps\\": ""
+            "SocialiteProviders\\AcheiCorridas\\": ""
         }
     }
 }

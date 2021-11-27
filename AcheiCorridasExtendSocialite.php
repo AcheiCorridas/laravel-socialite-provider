@@ -1,10 +1,10 @@
 <?php
 
-namespace SocialiteProviders\Newestapps;
+namespace SocialiteProviders\AcheiCorridas;
 
 use SocialiteProviders\Manager\SocialiteWasCalled;
 
-class NewestappsExtendSocialite
+class AcheiCorridasExtendSocialite
 {
     /**
      * Register the provider.
@@ -13,6 +13,6 @@ class NewestappsExtendSocialite
      */
     public function handle(SocialiteWasCalled $socialiteWasCalled)
     {
-        $socialiteWasCalled->extendSocialite('newestapps', Provider::class);
+        $socialiteWasCalled->extendSocialite('acheicorridas', Provider::class);
     }
 }

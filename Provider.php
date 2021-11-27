@@ -1,6 +1,6 @@
 <?php
 
-namespace SocialiteProviders\Newestapps;
+namespace SocialiteProviders\AcheiCorridas;
 
 use SocialiteProviders\Manager\OAuth2\AbstractProvider;
 use SocialiteProviders\Manager\OAuth2\User;
@@ -10,9 +10,9 @@ class Provider extends AbstractProvider
     /**
      * Unique Provider Identifier.
      */
-    public const IDENTIFIER = 'NEWESTAPPS';
+    public const IDENTIFIER = 'ACHEICORRIDAS';
 
-    const ISSUER = 'https://newestapps.com.br';
+    const ISSUER = 'https://v2.acheicorridas.com.br';
 
     /**
      * {@inheritdoc}
@@ -33,7 +33,7 @@ class Provider extends AbstractProvider
     protected function getAuthUrl($state)
     {
         return $this->buildAuthUrlFromBase(
-            config('services.newestapps.issuer', self::ISSUER) . '/oauth/authorize',
+            config('services.acheicorridas.issuer', self::ISSUER) . '/oauth/authorize',
             $state
         );
     }
@@ -43,7 +43,7 @@ class Provider extends AbstractProvider
      */
     protected function getTokenUrl()
     {
-        return config('services.newestapps.issuer', self::ISSUER) . '/oauth/token';
+        return config('services.acheicorridas.issuer', self::ISSUER) . '/oauth/token';
     }
 
     /**
@@ -52,7 +52,7 @@ class Provider extends AbstractProvider
     protected function getUserByToken($token)
     {
         $response = $this->getHttpClient()->get(
-            config('services.newestapps.issuer', self::ISSUER) . '/api/v1/user',
+            config('services.acheicorridas.issuer', self::ISSUER) . '/api/v2/user',
             [
                 'headers' => [
                     'Authorization' => 'Bearer '.$token,
@@ -61,26 +61,6 @@ class Provider extends AbstractProvider
         );
 
         return json_decode($response->getBody()->getContents(), true);
-    }
-
-    /**
-     * @param array $user
-     *
-     * @return string|null
-     *
-     * @see https://discord.com/developers/docs/reference#image-formatting-cdn-endpoints
-     */
-    protected function formatAvatar(array $user)
-    {
-        if (empty($user['avatar'])) {
-            return null;
-        }
-
-        $isGif = preg_match('/a_.+/m', $user['avatar']) === 1;
-        $extension = $this->getConfig('allow_gif_avatars', true) && $isGif ? 'gif' :
-            $this->getConfig('avatar_default_extension', 'jpg');
-
-        return sprintf('https://cdn.discordapp.com/avatars/%s/%s.%s', $user['id'], $user['avatar'], $extension);
     }
 
     /**
